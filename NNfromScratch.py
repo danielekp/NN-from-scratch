@@ -157,13 +157,13 @@ def main():
     x = np.sort(x, axis=0)
 
     if args.complexity=='1':
-        targets = (x * 4 + 12) / 3
+        targets = x * 4
     elif args.complexity=='3':
         targets = np.sin(x * 2 * np.pi / 3)
     elif args.complexity=='4':
-        targets = np.cos(x) * np.pi/x * 23
+        targets = np.cos(x) * np.arctan(x) / (x*2)
     elif args.complexity=='2':
-        targets = np.arctan(x) / np.sin(x) * 12 * np.square(x/3)
+        targets = np.square(x)*2
     elif args.complexity=='5':
         targets = np.sin(x) * np.arctan(x) / np.pi*np.sin(x)
 
@@ -199,6 +199,8 @@ def main():
         ax.plot(x, y, 'r-')
         ax.grid(True)
         ax.set_title('Iteration %d/%d' % (i+1, n_epochs))
+        path = "fitting/"+str(i)+".jpeg"
+        plt.savefig(path)
         plt.pause(0.005)
 
 if __name__=="__main__":
